@@ -6,14 +6,8 @@
 	pod3:0
 
 
-	To read the status of the pod, call:
+	To read the status of the pod, call:  ./kubectlCmdSim status podName             ex: ./kubectlCmdSim status pod1
 
-	./kubectlCmdSim status podName                   ex: ./kubectlCmdSim status pod1
+	To change the scale of the pod, call: ./kubectlCmdSim scale podName podScale     ex: ./kubectlCmdSim scale pod1 1
 
-	To change the scale of the pod, call:
-
-	./kubectlCmdSim scale podName podScale     ex: ./kubectlCmdSim scale pod1 1
-
-	To reset every pod status to zero, call:
-
-	./kubectlCmdSim reset
+	To reset every pod status to zero, call: ./kubectlCmdSim reset
