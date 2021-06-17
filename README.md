@@ -12,3 +12,5 @@
 	To change the scale of the pod, call: ./kubectlCmdSim scale podName podScale     ex: ./kubectlCmdSim scale pod1 1
 
 	To reset every pod status to zero, call: ./kubectlCmdSim reset
+	
+	To query the number of deployment type, call: ./kubectlCmdSim getDeploymentNumber connectorType   ex: ./kubeCtlCmdSim getDeploymentNumber connector
