@@ -1,25 +1,5 @@
 /*
 	Ryan Robinson, 2021
-
-	kubectlCmdSim simulates the output of kubectl requests locally and can be used for simple testing. The  simulated connector status data
-	is stored in a local text file called "connectorData" in this format, where each connector has a corresponding scale:
-
-	connector1:0
-	connector2:1
-	connector3:0
-
-
-	To read the status of the connector, call:
-
-	./kubectlCmdSim status connectorName                   ex: ./kubectlCmdSim status connector1
-
-	To change the scale of the connector, call:
-
-	./kubectlCmdSim scale connectorName connectorScale     ex: ./kubectlCmdSim scale connector1 1
-
-	To reset every connector status to zero, call:
-
-	./kubectlCmdSim reset
 */
 
 package main
@@ -31,7 +11,7 @@ import (
 	"strconv"
 )
 
-var connectorDataFilePath = "connectorData"
+var connectorDataFilePath = "podData"
 
 func isNumeric(s string) bool {
 	_, err := strconv.ParseInt(s, 10, 64)
