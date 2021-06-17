@@ -26,6 +26,15 @@ func readStatus(connector string, data []string) string {
 	}
 	return ""
 }
+func readDeploymentNumber(connectorType string, data []string) int {
+	i := 0
+	for _, str := range data {
+		if str[:len(connectorType)] == connectorType {
+			i++
+		}
+	}
+	return i
+}
 func readInData(filepath string) []string {
 	data, err := os.Open(filepath)
 	if err != nil {
@@ -39,15 +48,6 @@ func readInData(filepath string) []string {
 		lines = append(lines, scanner.Text())
 	}
 	return lines
-}
-func printStatus(connector string, filepath string) {
-	data := readInData(filepath)
-	status := readStatus(connector, data)
-	if status != "" {
-		fmt.Println(status)
-	} else {
-		fmt.Println("Error: " + connector + " does not exist")
-	}
 }
 func removeFile(filepath string) []string {
 	data := readInData(filepath)
@@ -86,6 +86,16 @@ func replaceWithNewData(filepath string, data []string) {
 		}
 	}
 }
+
+func printStatus(connector string, filepath string) {
+	data := readInData(filepath)
+	status := readStatus(connector, data)
+	if status != "" {
+		fmt.Println(status)
+	} else {
+		fmt.Println("Error: " + connector + " does not exist")
+	}
+}
 func writeStatus(filepath string, connector string, newStatus string) {
 	data := removeFile(filepath)
 	newData := createNewData(filepath, connector, newStatus, data)
@@ -95,6 +105,12 @@ func resetStatus(filepath string) {
 	data := removeFile(filepath)
 	newData := createBlankData(filepath, data)
 	replaceWithNewData(filepath, newData)
+}
+
+func getDeploymentNumber(filepath string, userClass string) int {
+	data := readInData(filepath)
+	count := readDeploymentNumber(userClass, data)
+	return count
 }
 func handleArgs(args []string) {
 	if args[0] == "status" && len(args) == 2 {
@@ -106,6 +122,8 @@ func handleArgs(args []string) {
 		fmt.Println(args[2])
 	} else if args[0] == "reset" && len(args) == 1 {
 		resetStatus(connectorDataFilePath)
+	} else if args[0] == "getDeploymentNumber" && len(args) == 2 {
+		fmt.Println(getDeploymentNumber(connectorDataFilePath, args[1]))
 	} else {
 		fmt.Println("Error: Unrecognized arguments")
 	}
@@ -114,3 +132,4 @@ func main() {
 	args := os.Args[1:]
 	handleArgs(args)
 }
+
