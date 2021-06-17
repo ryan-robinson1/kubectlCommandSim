@@ -1,5 +1,6 @@
-	kubectlCmdSim simulates the output of kubectl requests locally and can be used for simple testing. The  simulated pod status data
-	is stored in a local text file called "podData" in this format, where each pod has a corresponding scale:
+	kubectlCmdSim simulates the output of kubectl requests locally and can be used for simple testing. 
+	The  simulated pod status data is stored in a local text file called "podData" in this format, 
+	where each pod has a corresponding scale:
 
 	pod1:0
 	pod2:1
